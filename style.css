@@ -25,7 +25,9 @@ body {
     padding: 25px;
     border-radius: 14px;
     border: 1px solid #17618a;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 153, 255, 0.15);
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.4),
+        0 0 20px rgba(0, 153, 255, 0.15);
 }
 
 .titulo {
@@ -75,7 +77,8 @@ label {
     color: #8bdcff;
 }
 
-input {
+input,
+select {
     width: 100%;
     padding: 11px;
     border: 1px solid #347b9e;
@@ -86,7 +89,8 @@ input {
     transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-input:focus {
+input:focus,
+select:focus {
     outline: none;
     border-color: #38bdf8;
     box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
@@ -97,9 +101,12 @@ button {
     font-size: 14px;
     font-weight: bold;
     border: none;
-    border-radius: 6px;
+    border-radius: 7px;
     cursor: pointer;
-    transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    transition:
+        background-color 0.2s,
+        transform 0.2s,
+        box-shadow 0.2s;
 }
 
 button:hover {
@@ -118,23 +125,36 @@ button:disabled {
 }
 
 .btn-primary {
-    background-color: #087eae;
+    background: linear-gradient(135deg, #075985, #087eae);
     color: #ffffff;
+    border: 1px solid #38bdf8;
     box-shadow: 0 3px 10px rgba(0, 126, 174, 0.2);
 }
 
 .btn-primary:hover {
-    background-color: #079bd3;
+    background: linear-gradient(135deg, #087eae, #079bd3);
     box-shadow: 0 3px 14px rgba(0, 153, 255, 0.3);
 }
 
 .btn-cancelar {
-    background-color: #536b80;
+    background-color: #354f68;
     color: #ffffff;
+    border: 1px solid #63839e;
 }
 
 .btn-cancelar:hover {
-    background-color: #405568;
+    background-color: #466681;
+}
+
+.btn-danger {
+    background-color: #9f3658;
+    color: #ffffff;
+    border: 1px solid #d85b7c;
+}
+
+.btn-danger:hover {
+    background-color: #bd4667;
+    box-shadow: 0 3px 12px rgba(224, 82, 117, 0.2);
 }
 
 .botoes-formulario {
@@ -143,24 +163,22 @@ button:disabled {
     gap: 10px;
 }
 
-.btn-danger {
-    background-color: #bd4667;
+.btn-conceito,
+.btn-exportar,
+.btn-backup,
+.btn-importar {
     color: #ffffff;
-}
-
-.btn-danger:hover {
-    background-color: #e05275;
-    box-shadow: 0 3px 12px rgba(224, 82, 117, 0.2);
-}
-
-.btn-conceito {
-    background-color: #075985;
-    color: #ffffff;
+    background: linear-gradient(135deg, #075985, #087eae);
     border: 1px solid #38bdf8;
+    box-shadow: 0 3px 10px rgba(0, 153, 255, 0.12);
 }
 
-.btn-conceito:hover {
-    background-color: #087eae;
+.btn-conceito:hover,
+.btn-exportar:hover,
+.btn-backup:hover,
+.btn-importar:hover {
+    background: linear-gradient(135deg, #087eae, #079bd3);
+    box-shadow: 0 4px 14px rgba(56, 189, 248, 0.25);
 }
 
 .resumo-container {
@@ -185,6 +203,125 @@ button:disabled {
     color: #8bdcff;
 }
 
+.busca-container {
+    margin-bottom: 15px;
+}
+
+#campo-busca {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #347b9e;
+    border-radius: 6px;
+    font-size: 15px;
+    background-color: #f0f8ff;
+    color: #1b2d40;
+}
+
+.ordenacao-container {
+    position: relative;
+    margin-bottom: 18px;
+}
+
+.ordenacao-menu {
+    position: relative;
+    width: 100%;
+}
+
+.btn-ordenar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    padding: 13px 16px;
+
+    background: linear-gradient(135deg, #075985, #087eae);
+    color: #ffffff;
+
+    border: 1px solid #38bdf8;
+    border-radius: 8px;
+
+    font-size: 14px;
+    text-align: left;
+
+    box-shadow: 0 3px 12px rgba(0, 153, 255, 0.15);
+}
+
+.btn-ordenar:hover {
+    background: linear-gradient(135deg, #087eae, #079bd3);
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.25);
+}
+
+
+/* Seta */
+
+.seta-ordenacao {
+    font-size: 20px;
+    transition: transform 0.25s;
+}
+
+.btn-ordenar[aria-expanded="true"] .seta-ordenacao {
+    transform: rotate(180deg);
+}
+
+
+/* Lista de opções */
+
+.opcoes-ordenacao {
+    position: absolute;
+    top: calc(100% + 7px);
+    left: 0;
+
+    width: 100%;
+    padding: 7px;
+
+    background-color: #062b49;
+
+    border: 1px solid #38bdf8;
+    border-radius: 9px;
+
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
+
+    z-index: 100;
+
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.opcoes-ordenacao[hidden] {
+    display: none !important;
+}
+
+.opcoes-ordenacao button {
+    width: 100%;
+    padding: 11px 13px;
+
+    background-color: transparent;
+    color: #dff6ff;
+
+    border: none;
+    border-radius: 6px;
+
+    text-align: left;
+    font-size: 13px;
+}
+
+.opcoes-ordenacao button:hover {
+    background-color: #075985;
+    color: #ffffff;
+    transform: translateX(3px);
+}
+
+
+/* Opção selecionada */
+
+.opcoes-ordenacao button.selecionado {
+    background-color: #0b5277;
+    color: #8bdcff;
+    border-left: 3px solid #38bdf8;
+}
+
 .tabela-container {
     width: 100%;
     overflow-x: auto;
@@ -199,7 +336,8 @@ table {
     color: #eaf6ff;
 }
 
-th, td {
+th,
+td {
     border: 1px solid #205477;
     padding: 11px 9px;
     text-align: center;
@@ -223,28 +361,56 @@ tbody tr:hover {
     background-color: rgba(14, 116, 160, 0.35);
 }
 
-.btn-editar {
-    background-color: #087eae;
+tbody tr.estoque-baixo {
+    background-color: rgba(189, 70, 103, 0.28) !important;
+    border-left: 4px solid #ff647f;
+}
+
+tbody tr.estoque-baixo:hover {
+    background-color: rgba(189, 70, 103, 0.42) !important;
+}
+
+.alerta-estoque {
+    display: inline-block;
+    margin-left: 6px;
+    padding: 4px 7px;
+    border-radius: 5px;
+    background-color: #bd4667;
     color: #ffffff;
+    font-size: 10px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.quantidade-critica {
+    color: #ff9aaa;
+    font-weight: bold;
+}
+
+.btn-editar {
+    background: linear-gradient(135deg, #075985, #087eae);
+    color: #ffffff;
+    border: 1px solid #38bdf8;
     padding: 7px 10px;
     font-size: 12px;
     margin: 3px;
 }
 
 .btn-editar:hover {
-    background-color: #079bd3;
+    background: #079bd3;
 }
 
 .btn-remover {
-    background-color: #bd4667;
+    background-color: #9f3658;
     color: #ffffff;
+    border: 1px solid #d85b7c;
     padding: 7px 10px;
     font-size: 12px;
     margin: 3px;
 }
 
 .btn-remover:hover {
-    background-color: #e05275;
+    background-color: #bd4667;
 }
 
 .acoes {
@@ -262,32 +428,6 @@ tbody tr:hover {
     border-radius: 8px;
 }
 
-[hidden] {
-    display: none !important;
-}
-
-.busca-container {
-    margin-bottom: 15px;
-}
-
-#campo-busca {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #347b9e;
-    border-radius: 6px;
-    font-size: 15px;
-    background-color: #f0f8ff;
-    color: #1b2d40;
-    transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-#campo-busca:focus {
-    outline: none;
-    border-color: #38bdf8;
-    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
-}
-
-/* Sugestões de produtos parecidos */
 .campo-nome-container {
     position: relative;
 }
@@ -327,7 +467,6 @@ tbody tr:hover {
     border: 1px solid #347b9e;
     border-radius: 6px;
     text-align: left;
-    cursor: pointer;
 }
 
 .sugestao-item:hover {
@@ -376,15 +515,17 @@ tbody tr:hover {
     color: #caffeb;
 }
 
-/* Modais personalizados */
 .modal-overlay {
     position: fixed;
     inset: 0;
     z-index: 1000;
+
     display: flex;
     justify-content: center;
     align-items: center;
+
     padding: 20px;
+
     background: rgba(0, 8, 20, 0.78);
     backdrop-filter: blur(4px);
 }
@@ -397,11 +538,17 @@ tbody tr:hover {
     position: relative;
     width: 100%;
     max-width: 440px;
+
     padding: 25px;
+
     border: 1px solid #38bdf8;
     border-radius: 14px;
+
     background: #062b49;
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.55), 0 0 18px rgba(56, 189, 248, 0.16);
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.55),
+        0 0 18px rgba(56, 189, 248, 0.16);
 }
 
 .modal-caixa h2 {
@@ -441,7 +588,12 @@ tbody tr:hover {
     margin-top: 8px;
 }
 
+[hidden] {
+    display: none !important;
+}
+
 @media (max-width: 600px) {
+
     body {
         padding: 10px;
         background-attachment: scroll;
@@ -488,7 +640,8 @@ tbody tr:hover {
         font-size: 12px;
     }
 
-    th, td {
+    th,
+    td {
         padding: 8px 6px;
     }
 
@@ -498,6 +651,12 @@ tbody tr:hover {
         margin: 4px 0;
     }
 
+    .alerta-estoque {
+        display: block;
+        width: fit-content;
+        margin: 5px auto 0;
+    }
+
     .modal-botoes {
         flex-direction: column-reverse;
     }
@@ -505,4 +664,5 @@ tbody tr:hover {
     .modal-botoes button {
         width: 100%;
     }
+
 }

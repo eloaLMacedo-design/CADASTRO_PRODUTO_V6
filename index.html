@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -6,57 +7,242 @@
     <title>Sistema de estoque - POO</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+
     <div class="container">
+
         <header class="titulo">
             <img id="foto-perfil" src="eloooooo.jpg" alt="Minha foto">
             <h1>Cadastro de produtos</h1>
         </header>
 
+        <!-- FORMULÁRIO DE CADASTRO -->
+
         <form id="produto-form" novalidate>
+
             <div class="form-group campo-nome-container">
+
                 <label for="nome">Nome do produto:</label>
-                <input type="text" id="nome" placeholder="Ex. Notebook" maxlength="100" autocomplete="off" required>
+
+                <input
+                    type="text"
+                    id="nome"
+                    placeholder="Ex. Notebook"
+                    maxlength="100"
+                    autocomplete="off"
+                    required
+                >
+
                 <small class="mensagem-campo" id="erro-nome" aria-live="polite"></small>
+
                 <div id="sugestoes-produtos" class="sugestoes-produtos" hidden></div>
+
             </div>
 
             <div class="form-group">
+
                 <label for="preco">Preço (R$):</label>
-                <input type="number" id="preco" step="0.01" min="0.01" placeholder="Ex. 3500.00" required>
+
+                <input
+                    type="number"
+                    id="preco"
+                    step="0.01"
+                    min="0.01"
+                    placeholder="Ex. 3500.00"
+                    required
+                >
+
                 <small class="mensagem-campo" id="erro-preco" aria-live="polite"></small>
+
             </div>
 
             <div class="form-group">
+
                 <label for="quantidade">Quantidade:</label>
-                <input type="number" id="quantidade" step="1" min="1" placeholder="Ex. 5" required>
+
+                <input
+                    type="number"
+                    id="quantidade"
+                    step="1"
+                    min="1"
+                    placeholder="Ex. 5"
+                    required
+                >
+
                 <small class="mensagem-campo" id="erro-quantidade" aria-live="polite"></small>
+
             </div>
 
             <div class="botoes-formulario">
-                <button type="submit" id="btn-salvar" class="btn-primary">Adicionar ao carrinho</button>
-                <button type="button" id="btn-cancelar-edicao" class="btn-cancelar" hidden>Cancelar edição</button>
+
+                <button type="submit" id="btn-salvar" class="btn-primary">
+                    Adicionar ao carrinho
+                </button>
+
+                <button
+                    type="button"
+                    id="btn-cancelar-edicao"
+                    class="btn-cancelar"
+                    hidden
+                >
+                    Cancelar edição
+                </button>
+
             </div>
+
         </form>
 
+        <!-- PESQUISA -->
+
         <div class="form-group busca-container">
+
             <label for="campo-busca">Pesquisar produto:</label>
-            <input type="search" id="campo-busca" placeholder="Digite o nome do produto..." autocomplete="off">
+
+            <input
+                type="search"
+                id="campo-busca"
+                placeholder="Digite o nome do produto..."
+                autocomplete="off"
+            >
+
         </div>
+
+        <!-- MENU DE ORDENAÇÃO -->
+
+        <div class="form-group ordenacao-container">
+
+            <label>Ordenar produtos:</label>
+
+            <div class="ordenacao-menu" id="ordenacao-menu">
+
+                <button
+                    type="button"
+                    id="btn-ordenar"
+                    class="btn-ordenar"
+                    aria-expanded="false"
+                    aria-controls="opcoes-ordenacao"
+                >
+
+                    <span id="texto-ordenacao">
+                        ↕ Ordenar: Padrão (Cadastro)
+                    </span>
+
+                    <span class="seta-ordenacao">⌄</span>
+
+                </button>
+
+                <div
+                    id="opcoes-ordenacao"
+                    class="opcoes-ordenacao"
+                    hidden
+                >
+
+                    <button type="button" data-ordem="padrao">
+                        Padrão (Cadastro)
+                    </button>
+
+                    <button type="button" data-ordem="menor-quantidade">
+                        Menor Quantidade
+                    </button>
+
+                    <button type="button" data-ordem="maior-preco">
+                        Maior Preço
+                    </button>
+
+                    <button type="button" data-ordem="menor-preco">
+                        Menor Preço
+                    </button>
+
+                    <button type="button" data-ordem="alfabetica">
+                        Ordem Alfabética (A-Z)
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- RESUMO DO ESTOQUE -->
 
         <div class="resumo-container">
-            <h3 id="total-estoque">Total em estoque: R$ 0,00</h3>
+
+            <h3 id="total-estoque">
+                Total em estoque: R$ 0,00
+            </h3>
+
             <div class="botoes-resumo">
-                <button type="button" id="btn-conceito-bootstrap" class="btn-conceito">Conceito Bootstrap</button>
-                <button type="button" id="limpar-tabela" class="btn-danger">Limpar tudo</button>
+
+                <button
+                    type="button"
+                    id="btn-conceito-bootstrap"
+                    class="btn-conceito"
+                >
+                    Conceito Bootstrap
+                </button>
+
+                <button
+                    type="button"
+                    id="btn-exportar-csv"
+                    class="btn-exportar"
+                >
+                    Exportar CSV
+                </button>
+
+                <button
+                    type="button"
+                    id="btn-backup-json"
+                    class="btn-backup"
+                >
+                    Backup JSON
+                </button>
+
+                <button
+                    type="button"
+                    id="btn-importar-json"
+                    class="btn-importar"
+                >
+                    Restaurar JSON
+                </button>
+
+                <input
+                    type="file"
+                    id="arquivo-json"
+                    accept=".json,application/json"
+                    hidden
+                >
+
+                <button
+                    type="button"
+                    id="limpar-tabela"
+                    class="btn-danger"
+                >
+                    Limpar tudo
+                </button>
+
             </div>
+
         </div>
 
-        <div id="notificacao" class="notificacao" role="status" aria-live="polite" hidden></div>
+        <!-- NOTIFICAÇÕES -->
+
+        <div
+            id="notificacao"
+            class="notificacao"
+            role="status"
+            aria-live="polite"
+            hidden
+        ></div>
+
+        <!-- TABELA DE PRODUTOS -->
 
         <div class="tabela-container">
+
             <table id="tabela-produtos">
+
                 <thead>
+
                     <tr>
                         <th>Nome</th>
                         <th>Preço-un</th>
@@ -64,36 +250,109 @@
                         <th>Sub-total</th>
                         <th>Ações</th>
                     </tr>
+
                 </thead>
+
                 <tbody></tbody>
+
             </table>
+
         </div>
 
-        <p id="mensagem-vazia" hidden>Nenhum produto cadastrado ainda.</p>
+        <p id="mensagem-vazia" hidden>
+            Nenhum produto cadastrado ainda.
+        </p>
+
     </div>
+
+
+    <!-- MODAL DE CONFIRMAÇÃO -->
 
     <div id="modal-confirmacao" class="modal-overlay" hidden>
-        <section class="modal-caixa" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
+
+        <section
+            class="modal-caixa"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modal-titulo"
+        >
+
             <h2 id="modal-titulo">Confirmar ação</h2>
+
             <p id="modal-mensagem"></p>
+
             <div class="modal-botoes">
-                <button type="button" id="modal-cancelar" class="btn-cancelar">Cancelar</button>
-                <button type="button" id="modal-confirmar" class="btn-danger">Confirmar</button>
+
+                <button
+                    type="button"
+                    id="modal-cancelar"
+                    class="btn-cancelar"
+                >
+                    Cancelar
+                </button>
+
+                <button
+                    type="button"
+                    id="modal-confirmar"
+                    class="btn-danger"
+                >
+                    Confirmar
+                </button>
+
             </div>
+
         </section>
+
     </div>
 
-    <!-- Modal explicativo -->
+
+    <!-- MODAL CONCEITO BOOTSTRAP -->
+
     <div id="modal-conceito" class="modal-overlay" hidden>
-        <section class="modal-caixa modal-conceito-caixa" role="dialog" aria-modal="true" aria-labelledby="conceito-titulo">
-            <button type="button" id="fechar-conceito" class="modal-fechar" aria-label="Fechar">×</button>
-            <h2 id="conceito-titulo">O que é Bootstrap?</h2>
-            <p>Bootstrap é um framework front-end que oferece componentes e estilos prontos para acelerar a criação de interfaces.</p>
-            <p>Neste projeto, o conceito é demonstrado pela organização de componentes da interface, como botões, formulários e janelas modais. Os modais desta versão foram personalizados com HTML, CSS e JavaScript para combinar com a identidade visual do sistema.</p>
-            <button type="button" id="entendi-conceito" class="btn-primary">Entendi</button>
+
+        <section
+            class="modal-caixa modal-conceito-caixa"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="conceito-titulo"
+        >
+
+            <button
+                type="button"
+                id="fechar-conceito"
+                class="modal-fechar"
+                aria-label="Fechar"
+            >
+                ×
+            </button>
+
+            <h2 id="conceito-titulo">
+                O que é Bootstrap?
+            </h2>
+
+            <p>
+                Bootstrap é um framework front-end que oferece componentes
+                e estilos prontos para acelerar a criação de interfaces.
+            </p>
+
+            <p>
+                Neste projeto, o conceito é demonstrado pela organização
+                de componentes da interface, como botões, formulários
+                e janelas modais. Os modais desta versão foram
+                personalizados com HTML, CSS e JavaScript para combinar
+                com a identidade visual do sistema.
+            </p>
+
+            <button type="button" id="entendi-conceito" class="btn-primary">
+                Entendi
+            </button>
+
         </section>
+
     </div>
+
 
     <script src="script.js"></script>
+
 </body>
 </html>
